@@ -1,4 +1,4 @@
-package com.ziii08.mbooking
+package com.mbooking.app
 
 import io.flutter.embedding.android.FlutterActivity
 
