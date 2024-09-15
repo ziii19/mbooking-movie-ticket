@@ -1,6 +1,8 @@
+# @format
+
 name: mbooking
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -8,11 +10,13 @@ environment:
 
 dependencies:
   cloud_firestore: ^5.4.1
+  dartz: ^0.10.1
   firebase_auth: ^5.2.1
   firebase_core: ^3.4.1
   firebase_storage: ^12.3.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -21,3 +25,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
