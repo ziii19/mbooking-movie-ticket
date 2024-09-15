@@ -1,4 +1,4 @@
-part of '../onboard_page.dart';
+part of '../auth_page.dart';
 
 class MovieSlider extends StatefulWidget {
   const MovieSlider({super.key});

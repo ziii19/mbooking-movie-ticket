@@ -6,11 +6,12 @@ import 'package:mbooking/features/auth/presentation/pages/sign_up/sign_up_page.d
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../widgets/bottom_auth_text.dart';
+import '../sign_in/sign_in_page.dart';
 
 part 'section/slider_section.dart';
 
-class OnboardPage extends StatelessWidget {
-  const OnboardPage({super.key});
+class AuthPage extends StatelessWidget {
+  const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,9 @@ class OnboardPage extends StatelessWidget {
               const MovieSlider(),
               const SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, SignInPage.route());
+                },
                 child: const Text('Sign In'),
               ),
               const SizedBox(height: 16),
