@@ -34,9 +34,9 @@ class _NowPlayingSliderState extends State<_NowPlayingSlider> {
                     CarouselSlider(
                       items: movies
                           .map((movie) => MovieSliderCard(
+                                id: movie.id,
                                 posterUrl: movie.posterPath,
                                 title: movie.title,
-                                runtime: '200m',
                                 genre: getGenreNames(movie.genreIds)
                                     .take(3)
                                     .map((e) => e)
