@@ -5,6 +5,7 @@ class Movie {
   final List<int> genreIds;
   final double voteAverage;
   final int voteCount;
+  final String releaseDate;
 
   Movie({
     required this.id,
@@ -13,5 +14,6 @@ class Movie {
     required this.genreIds,
     required this.voteAverage,
     required this.voteCount,
+    required this.releaseDate,
   });
 }
