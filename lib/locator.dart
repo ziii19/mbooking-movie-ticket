@@ -14,9 +14,15 @@ import 'package:mbooking/features/auth/domain/usecases/update_user.dart';
 import 'package:mbooking/features/auth/domain/usecases/user_sign_out.dart';
 import 'package:mbooking/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:mbooking/features/auth/presentation/blocs/user/user_bloc.dart';
+import 'package:mbooking/features/movie/data/datasource/movie_remote_data_source.dart';
+import 'package:mbooking/features/movie/data/repositories/movie_repository_impl.dart';
+import 'package:mbooking/features/movie/domain/repositories/movie_repository.dart';
+import 'package:mbooking/features/movie/domain/usecases/get_now_playing.dart';
+import 'package:mbooking/features/movie/presentation/bloc/movies_bloc.dart';
 
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/repositories/user_repository.dart';
+import 'features/movie/domain/usecases/get_upcoming.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -45,6 +51,9 @@ void initLocator() {
       sl<FirebaseAuth>(),
     ),
   );
+  sl.registerLazySingleton<MovieRemoteDataSource>(
+    () => MovieRemoteDataSourceImpl(),
+  );
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(
@@ -55,6 +64,11 @@ void initLocator() {
   sl.registerLazySingleton<UserRepository>(
     () => UserRepositoryImpl(
       sl<UserRepoRemoteDataSource>(),
+    ),
+  );
+  sl.registerLazySingleton<MovieRepository>(
+    () => MovieRepositoryImpl(
+      sl<MovieRemoteDataSource>(),
     ),
   );
 
@@ -89,6 +103,16 @@ void initLocator() {
       sl<UserRepository>(),
     ),
   );
+  sl.registerLazySingleton<GetNowPlaying>(
+    () => GetNowPlaying(
+      sl<MovieRepository>(),
+    ),
+  );
+  sl.registerLazySingleton<GetUpcoming>(
+    () => GetUpcoming(
+      sl<MovieRepository>(),
+    ),
+  );
 
   // Blocs
   sl.registerFactory<AuthBloc>(
@@ -103,6 +127,12 @@ void initLocator() {
       createUser: sl<CreateUser>(),
       updateUser: sl<UpdateUser>(),
       getUserLoggedIn: sl<GetUserLoggedIn>(),
+    ),
+  );
+  sl.registerFactory(
+    () => MoviesBloc(
+      getNowPlaying: sl<GetNowPlaying>(),
+      getUpcoming: sl<GetUpcoming>(),
     ),
   );
 }
