@@ -8,7 +8,7 @@ abstract interface class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final FirebaseAuth firebaseAuth;
-  AuthRemoteDataSourceImpl({required this.firebaseAuth});
+  AuthRemoteDataSourceImpl(this.firebaseAuth);
   @override
   Future<String> signIn(String email, String password) async {
     try {
