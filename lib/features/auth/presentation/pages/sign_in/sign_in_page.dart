@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbooking/core/constants/assets_images.dart';
 import 'package:mbooking/core/theme/app_colors.dart';
 import 'package:mbooking/features/auth/presentation/widgets/bottom_auth_text.dart';
+import 'package:mbooking/features/main/pages/main_page.dart';
 
 import '../../../../../core/widgets/back_nav.dart';
 import '../../../../../core/widgets/input_text.dart';
@@ -34,11 +35,10 @@ class _SignInPageState extends State<SignInPage> {
               ),
             );
           } else if (state is UserSuccess) {
-            // TODO: Navigate to home
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.user.name),
-              ),
+            Navigator.pushAndRemoveUntil(
+              context,
+              MainPage.route(),
+              (route) => false,
             );
           }
         },

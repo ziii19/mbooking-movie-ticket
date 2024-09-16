@@ -11,6 +11,7 @@ import '../sign_in/sign_in_page.dart';
 part 'section/slider_section.dart';
 
 class AuthPage extends StatelessWidget {
+  static route() => MaterialPageRoute(builder: (context) => const AuthPage());
   const AuthPage({super.key});
 
   @override

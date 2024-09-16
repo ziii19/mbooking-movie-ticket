@@ -9,6 +9,7 @@ import 'package:mbooking/features/auth/presentation/widgets/bottom_auth_text.dar
 import '../../../../../core/utils/pick_image.dart';
 import '../../../../../core/widgets/back_nav.dart';
 import '../../../../../core/widgets/input_text.dart';
+import '../../../../main/pages/main_page.dart';
 import '../../blocs/auth/auth_bloc.dart';
 import '../../blocs/user/user_bloc.dart';
 import '../../widgets/or_continue.dart';
@@ -37,7 +38,11 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             );
           } else if (state is UserSuccess) {
-            // TODO: Navigate to home
+            Navigator.pushAndRemoveUntil(
+              context,
+              MainPage.route(),
+              (route) => false,
+            );
           }
         },
         child: Scaffold(
