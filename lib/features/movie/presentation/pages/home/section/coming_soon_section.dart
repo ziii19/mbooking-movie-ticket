@@ -19,17 +19,17 @@ class _ComingSoonSection extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: state.upcomingMovies.length,
                   itemBuilder: (context, index) {
+                    final movies = state.upcomingMovies[index];
                     return Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: UpcomingCard(
-                        posterUrl: state.upcomingMovies[index].posterPath,
-                        title: state.upcomingMovies[index].title,
-                        genre: state.upcomingMovies[index].genreIds
-                            .map((e) => e.toString())
+                        posterUrl: movies.posterPath,
+                        title: movies.title,
+                        genre: getGenreNames(movies.genreIds)
+                            .take(2)
+                            .map((e) => e)
                             .join(', '),
-                        release: state.upcomingMovies[index]
-                            .toString()
-                            .substring(0, 4),
+                        release: movies.releaseDate,
                       ),
                     );
                   },

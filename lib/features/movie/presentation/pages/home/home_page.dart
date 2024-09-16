@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbooking/core/theme/app_colors.dart';
 import 'package:mbooking/core/utils/capital.dart';
 
+import '../../../../../core/utils/get_genre_names.dart';
 import '../../../../auth/presentation/blocs/user/user_bloc.dart';
 import '../../bloc/movies_bloc.dart';
 import '../../widgets/movie_slider_card.dart';

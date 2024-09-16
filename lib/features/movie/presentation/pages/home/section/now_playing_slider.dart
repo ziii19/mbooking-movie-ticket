@@ -37,7 +37,10 @@ class _NowPlayingSliderState extends State<_NowPlayingSlider> {
                                 posterUrl: movie.posterPath,
                                 title: movie.title,
                                 runtime: '200m',
-                                genre: movie.genreIds.first.toString(),
+                                genre: getGenreNames(movie.genreIds)
+                                    .take(3)
+                                    .map((e) => e)
+                                    .join(', '),
                                 vote: movie.voteAverage.toStringAsFixed(1),
                                 voteCount: movie.voteCount.toString(),
                               ))
