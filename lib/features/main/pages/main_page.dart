@@ -3,6 +3,7 @@ import 'package:mbooking/core/theme/app_colors.dart';
 import 'package:mbooking/features/movie/presentation/pages/home/home_page.dart';
 import 'package:mbooking/features/user/presentation/pages/profile/profile_page.dart';
 
+import '../../../core/constants/assets_svg.dart';
 import '../widgets/custom_bottom_nav.dart';
 
 class MainPage extends StatefulWidget {
@@ -42,19 +43,19 @@ class _MainPageState extends State<MainPage> {
         },
         items: [
           NavBarItem(
-            icon: Icons.home,
+            icon: AssetsSvg.home,
             label: 'Home',
           ),
           NavBarItem(
-            icon: Icons.confirmation_num,
+            icon: AssetsSvg.ticket,
             label: 'Ticket',
           ),
           NavBarItem(
-            icon: Icons.movie_outlined,
+            icon: AssetsSvg.video,
             label: 'Movie',
           ),
           NavBarItem(
-            icon: Icons.person,
+            icon: AssetsSvg.user,
             label: 'Profile',
           ),
         ],
