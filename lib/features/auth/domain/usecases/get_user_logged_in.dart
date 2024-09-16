@@ -16,8 +16,8 @@ class GetUserLoggedIn implements Usecase<User, GetUserParam> {
 }
 
 class GetUserParam {
-  final String uid;
+  final String? uid;
   GetUserParam({
-    required this.uid,
+    this.uid,
   });
 }

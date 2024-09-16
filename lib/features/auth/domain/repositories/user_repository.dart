@@ -13,7 +13,7 @@ abstract interface class UserRepository {
     num? phoneNumber,
     File? photoUrl,
   });
-  Future<Either<Failure, User>> getUser(String uid);
+  Future<Either<Failure, User>> getUser(String? uid);
   Future<Either<Failure, User>> updateUser({
     required String uid,
     required String name,

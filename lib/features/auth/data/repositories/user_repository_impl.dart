@@ -48,7 +48,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, User>> getUser(String uid) async {
+  Future<Either<Failure, User>> getUser(String? uid) async {
     try {
       UserModel userModel = await userRepoRemoteDataSource.getUser(uid);
       return Right(userModel);

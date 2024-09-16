@@ -34,6 +34,6 @@ final class UpdateUserDetail extends UserEvent {
 }
 
 final class GetUser extends UserEvent {
-  final String uid;
-  GetUser({required this.uid});
+  final String? uid;
+  GetUser({this.uid});
 }

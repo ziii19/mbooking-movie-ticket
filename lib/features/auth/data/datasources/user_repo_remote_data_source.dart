@@ -2,13 +2,14 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:mbooking/features/auth/data/models/user_model.dart';
 
 abstract interface class UserRepoRemoteDataSource {
   Future<UserModel> createUser(UserModel user);
-  Future<UserModel> getUser(String uid);
+  Future<UserModel> getUser(String? uid);
   Future<UserModel> updateUser(UserModel user);
   Future<String> uploadImage({
     required UserModel user,
@@ -18,9 +19,11 @@ abstract interface class UserRepoRemoteDataSource {
 
 class UserRepoRemoteDataSourceImpl implements UserRepoRemoteDataSource {
   final FirebaseFirestore firebaseFirestore;
+  final FirebaseAuth firebaseAuth;
   final FirebaseStorage firebaseStorage;
 
-  UserRepoRemoteDataSourceImpl(this.firebaseFirestore, this.firebaseStorage);
+  UserRepoRemoteDataSourceImpl(
+      this.firebaseFirestore, this.firebaseStorage, this.firebaseAuth);
   @override
   Future<UserModel> createUser(UserModel user) async {
     try {
@@ -37,8 +40,14 @@ class UserRepoRemoteDataSourceImpl implements UserRepoRemoteDataSource {
   }
 
   @override
-  Future<UserModel> getUser(String uid) async {
+  Future<UserModel> getUser(String? uid) async {
     try {
+      final currentUser = firebaseAuth.currentUser!.uid;
+      if (currentUser.isNotEmpty) {
+        DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+            await firebaseFirestore.collection('users').doc(currentUser).get();
+        return UserModel.fromMap(documentSnapshot.data()!);
+      }
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
           await firebaseFirestore.collection('users').doc(uid).get();
       return UserModel.fromMap(documentSnapshot.data()!);
