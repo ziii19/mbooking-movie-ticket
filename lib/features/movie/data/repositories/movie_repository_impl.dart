@@ -4,6 +4,7 @@ import 'package:mbooking/core/error/failures.dart';
 import 'package:mbooking/features/movie/data/datasource/movie_remote_data_source.dart';
 
 import 'package:mbooking/features/movie/domain/entities/movie.dart';
+import 'package:mbooking/features/movie/domain/entities/movie_detail.dart';
 
 import '../../domain/repositories/movie_repository.dart';
 
@@ -12,9 +13,17 @@ class MovieRepositoryImpl implements MovieRepository {
 
   MovieRepositoryImpl(this.movieRemoteDataSource);
   @override
-  Future<Either<Failure, Movie>> getMovieDetail(int id) {
-    // TODO: implement getMovieDetail
-    throw UnimplementedError();
+  Future<Either<Failure, MovieDetail>> getMovieDetail(int id) async {
+    try {
+      final result = await movieRemoteDataSource.getMovieDetail(id);
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(
+        Failure(
+          e.toString(),
+        ),
+      );
+    }
   }
 
   @override

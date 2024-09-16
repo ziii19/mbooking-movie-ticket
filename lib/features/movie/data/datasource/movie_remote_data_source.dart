@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:mbooking/core/constants/movie_category.dart';
 import 'package:mbooking/core/constants/service_token.dart';
+import 'package:mbooking/features/movie/data/models/movie_detail_model.dart';
 import 'package:mbooking/features/movie/data/models/movie_model.dart';
 
 abstract interface class MovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlaying(int page);
   Future<List<MovieModel>> getUpcoming(int page);
-  Future<MovieModel> getMovieDetail(int id);
+  Future<MovieDetailModel> getMovieDetail(int id);
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
@@ -22,10 +23,10 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   }
 
   @override
-  Future<MovieModel> getMovieDetail(int id) async {
+  Future<MovieDetailModel> getMovieDetail(int id) async {
     try {
       final response = await dio.get('/$id');
-      return MovieModel.fromMap(response.data);
+      return MovieDetailModel.fromJson(response.data);
     } on DioException catch (e) {
       throw Exception(e);
     }
