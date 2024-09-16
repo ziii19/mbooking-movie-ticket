@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbooking/core/constants/assets_svg.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import 'movie_card_item.dart';
@@ -27,29 +28,33 @@ class UpcomingCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             child: Image.network(
               'https://image.tmdb.org/t/p/w500/$posterUrl',
-              width: 170,
+              width: 180,
               height: 240,
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(height: 16),
-          Text(
-            title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-              color: AppColors.yellow,
+          SizedBox(
+            height: 35,
+            child: Text(
+              title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: AppColors.yellow,
+              ),
             ),
           ),
           const SizedBox(height: 8),
           MovieCardItem(
-            icon: Icons.movie,
+            icon: AssetsSvg.video,
             text: genre,
           ),
           const SizedBox(height: 4),
           MovieCardItem(
-            icon: Icons.movie,
+            icon: AssetsSvg.calendar,
             text: release,
           )
         ],
