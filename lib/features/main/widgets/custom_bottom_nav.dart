@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/theme/app_colors.dart';
 
@@ -40,12 +41,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  SvgPicture.asset(
                     item.icon,
                     color: selectedIndex == index
                         ? AppColors.yellow
                         : AppColors.white,
-                    size: 25,
+                    height: 25,
+                    width: 25,
                   ),
                   const SizedBox(height: 5.0),
                   Text(
@@ -69,7 +71,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
 }
 
 class NavBarItem {
-  final IconData icon;
+  final String icon;
   final String label;
 
   NavBarItem({

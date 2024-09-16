@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
 class MovieCardItem extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String text;
   const MovieCardItem({
     super.key,
@@ -15,10 +16,11 @@ class MovieCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
+        SvgPicture.asset(
           icon,
           color: AppColors.white,
-          size: 16,
+          width: 16,
+          height: 16,
         ),
         const SizedBox(width: 8),
         Text(
