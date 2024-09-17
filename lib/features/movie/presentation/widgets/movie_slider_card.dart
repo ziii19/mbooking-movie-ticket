@@ -71,11 +71,13 @@ class _MovieSliderCardState extends State<MovieSliderCard> {
         ),
         const SizedBox(height: 4),
         Text(
-          '${runtime != null ? timeHHMM(int.parse(runtime!)) : '-'} · ${widget.genre}',
+          '${runtime != null ? timeHHMM(int.parse(runtime!)) : '-'} • ${widget.genre}',
           style: const TextStyle(
             fontSize: 16,
-            color: AppColors.white,
+            color: AppColors.gray1,
           ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
         ),
         Row(
