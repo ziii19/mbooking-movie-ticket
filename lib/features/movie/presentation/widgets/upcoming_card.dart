@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mbooking/core/constants/assets_svg.dart';
+import 'package:mbooking/core/utils/time_format.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import 'movie_card_item.dart';
@@ -55,7 +56,7 @@ class UpcomingCard extends StatelessWidget {
           const SizedBox(height: 4),
           MovieCardItem(
             icon: AssetsSvg.calendar,
-            text: release,
+            text: timeDDMMYYY(release),
           )
         ],
       ),

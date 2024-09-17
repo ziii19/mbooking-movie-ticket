@@ -21,7 +21,8 @@ class _ComingSoonSection extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final movies = state.upcomingMovies[index];
                     return Padding(
-                      padding: const EdgeInsets.all(4.0),
+                      padding: EdgeInsets.only(
+                          right: movies == state.upcomingMovies.last ? 0 : 16),
                       child: UpcomingCard(
                         posterUrl: movies.posterPath,
                         title: movies.title,
