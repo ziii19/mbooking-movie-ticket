@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:mbooking/core/constants/assets_svg.dart';
 import 'package:mbooking/core/theme/app_colors.dart';
 import 'package:mbooking/core/utils/capital.dart';
 import 'package:mbooking/features/auth/presentation/blocs/auth/auth_bloc.dart';
@@ -42,17 +44,17 @@ class ProfilePage extends StatelessWidget {
                 const _UserProfile(),
                 const SizedBox(height: 60.0),
                 BuildProfileMenu(
-                  icon: Icons.confirmation_num,
+                  icon: AssetsSvg.ticket2,
                   text: 'My ticket',
                   onTap: () {},
                 ),
                 BuildProfileMenu(
-                  icon: Icons.shopping_bag_rounded,
+                  icon: AssetsSvg.shoppingCart,
                   text: 'Payment history',
                   onTap: () {},
                 ),
                 BuildProfileMenu(
-                  icon: Icons.lock_outline_rounded,
+                  icon: AssetsSvg.lock,
                   text: 'Change password',
                   onTap: () {},
                 ),

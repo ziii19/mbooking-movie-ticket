@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
 class BuildProfileMenu extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String text;
   final void Function()? onTap;
   const BuildProfileMenu({
@@ -28,10 +29,10 @@ class BuildProfileMenu extends StatelessWidget {
         )),
         child: Row(
           children: [
-            Icon(
+            SvgPicture.asset(
               icon,
-              color: AppColors.white,
-              size: 30,
+              width: 30,
+              height: 30,
             ),
             const SizedBox(width: 16),
             Expanded(

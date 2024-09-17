@@ -56,13 +56,13 @@ class _UserProfile extends StatelessWidget {
                       ),
                     ),
                     BuildUserInfo(
-                      icon: Icons.phone,
+                      icon: AssetsSvg.call,
                       text: user.phoneNumber == null
-                          ? '08xxxxxxxxx'
+                          ? '-'
                           : user.phoneNumber.toString(),
                     ),
                     BuildUserInfo(
-                      icon: Icons.mail_outline,
+                      icon: AssetsSvg.sms,
                       text: user.email,
                     ),
                   ],
@@ -70,10 +70,7 @@ class _UserProfile extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.edit_note,
-                  color: AppColors.white,
-                ),
+                icon: SvgPicture.asset(AssetsSvg.edit),
               )
             ],
           );

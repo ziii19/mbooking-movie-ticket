@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
 class BuildUserInfo extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String text;
   const BuildUserInfo({
     super.key,
@@ -15,10 +16,10 @@ class BuildUserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
+        SvgPicture.asset(
           icon,
-          size: 20,
-          color: AppColors.outline,
+          width: 20,
+          height: 20,
         ),
         const SizedBox(width: 8),
         Text(
