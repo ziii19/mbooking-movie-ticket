@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:mbooking/core/utils/number_format.dart';
 import 'package:mbooking/core/utils/time_format.dart';
 import 'package:mbooking/features/movie/data/datasource/movie_remote_data_source.dart';
 
@@ -89,7 +89,7 @@ class _MovieSliderCardState extends State<MovieSliderCard> {
             ),
             const SizedBox(width: 4),
             Text(
-              '(${NumberFormat('#,###', 'id_ID').format(int.parse(widget.voteCount))})',
+              '(${numFormat(widget.voteCount)})',
               style: const TextStyle(fontSize: 12, color: AppColors.gray),
             ),
           ],

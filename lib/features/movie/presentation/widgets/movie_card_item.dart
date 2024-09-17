@@ -5,11 +5,13 @@ import '../../../../core/theme/app_colors.dart';
 
 class MovieCardItem extends StatelessWidget {
   final String icon;
+  final Color? iconColor;
   final String text;
   const MovieCardItem({
     super.key,
     required this.icon,
     required this.text,
+    this.iconColor,
   });
 
   @override
@@ -18,7 +20,8 @@ class MovieCardItem extends StatelessWidget {
       children: [
         SvgPicture.asset(
           icon,
-          color: AppColors.white,
+          colorFilter:
+              ColorFilter.mode(iconColor ?? AppColors.outline, BlendMode.srcIn),
           width: 16,
           height: 16,
         ),
