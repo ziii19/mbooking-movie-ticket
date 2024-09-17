@@ -14,3 +14,10 @@ String timeHHMM(int time) {
 
   return '${hours}h${minutes}m';
 }
+
+String timeHHSMM(int time) {
+  int hours = time ~/ 60;
+  int minutes = time % 60;
+
+  return '$hours hour $minutes minutes';
+}
