@@ -17,7 +17,13 @@ class _NowPlayingSliderState extends State<_NowPlayingSlider> {
       children: [
         TitleSection(
           title: 'Now Playing',
-          onPressed: () {},
+          onPressed: () {
+            context.read<NavIndexCubit>().setIndex(2);
+            context
+                .read<CategoryIndexCubit>()
+                .setCategory(MovieCategory.nowPlaying);
+            Navigator.push(context, MainPage.route());
+          },
         ),
         const SizedBox(height: 16),
         SizedBox(
@@ -38,7 +44,6 @@ class _NowPlayingSliderState extends State<_NowPlayingSlider> {
                                 posterUrl: movie.posterPath,
                                 title: movie.title,
                                 genre: getGenreNames(movie.genreIds)
-                                    .take(3)
                                     .map((e) => e)
                                     .join(', '),
                                 vote: movie.voteAverage.toStringAsFixed(1),

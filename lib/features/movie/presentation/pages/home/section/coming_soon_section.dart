@@ -7,7 +7,15 @@ class _ComingSoonSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const TitleSection(title: 'Coming Soon'),
+        TitleSection(
+            title: 'Coming Soon',
+            onPressed: () {
+              context.read<NavIndexCubit>().setIndex(2);
+              context
+                  .read<CategoryIndexCubit>()
+                  .setCategory(MovieCategory.upcoming);
+              Navigator.push(context, MainPage.route());
+            }),
         BlocBuilder<MoviesBloc, MoviesState>(
           builder: (context, state) {
             if (state is MoviesLoading) {

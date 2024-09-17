@@ -10,14 +10,9 @@ import '../../blocs/movie/movies_bloc.dart';
 import '../../widgets/now_playing_card.dart';
 import '../../widgets/upcoming_card.dart';
 
-class MoviePage extends StatefulWidget {
+class MoviePage extends StatelessWidget {
   const MoviePage({super.key});
 
-  @override
-  State<MoviePage> createState() => _MoviePageState();
-}
-
-class _MoviePageState extends State<MoviePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,9 +56,9 @@ class _MoviePageState extends State<MoviePage> {
                                   (e) => Expanded(
                                     child: GestureDetector(
                                       onTap: () {
-                                        setState(() {
-                                          movieCategory = e;
-                                        });
+                                        context
+                                            .read<CategoryIndexCubit>()
+                                            .setCategory(e);
                                       },
                                       child: Container(
                                         color: Colors.transparent,

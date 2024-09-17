@@ -1,8 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbooking/core/constants/movie_category.dart';
 import 'package:mbooking/core/theme/app_colors.dart';
 import 'package:mbooking/core/utils/capital.dart';
+import 'package:mbooking/features/main/pages/cubit/nav_index_cubit.dart';
+import 'package:mbooking/features/main/pages/main_page.dart';
+import 'package:mbooking/features/movie/presentation/blocs/cubit/category_index_cubit.dart';
 
 import '../../../../../core/utils/get_genre_names.dart';
 import '../../../../auth/presentation/blocs/user/user_bloc.dart';
