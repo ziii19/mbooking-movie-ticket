@@ -18,7 +18,7 @@ import 'package:mbooking/features/movie/data/datasource/movie_remote_data_source
 import 'package:mbooking/features/movie/data/repositories/movie_repository_impl.dart';
 import 'package:mbooking/features/movie/domain/repositories/movie_repository.dart';
 import 'package:mbooking/features/movie/domain/usecases/get_now_playing.dart';
-import 'package:mbooking/features/movie/presentation/bloc/movies_bloc.dart';
+import 'package:mbooking/features/movie/presentation/blocs/movie/movies_bloc.dart';
 
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/repositories/user_repository.dart';

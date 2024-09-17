@@ -6,7 +6,7 @@ import 'package:mbooking/core/utils/capital.dart';
 
 import '../../../../../core/utils/get_genre_names.dart';
 import '../../../../auth/presentation/blocs/user/user_bloc.dart';
-import '../../bloc/movies_bloc.dart';
+import '../../blocs/movie/movies_bloc.dart';
 import '../../widgets/movie_slider_card.dart';
 import '../../widgets/title_section.dart';
 import '../../widgets/upcoming_card.dart';

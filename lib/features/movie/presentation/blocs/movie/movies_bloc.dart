@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbooking/features/movie/domain/usecases/get_now_playing.dart';
 
-import '../../domain/entities/movie.dart';
-import '../../domain/usecases/get_upcoming.dart';
+import '../../../domain/entities/movie.dart';
+import '../../../domain/usecases/get_upcoming.dart';
 
 part 'movies_event.dart';
 part 'movies_state.dart';
