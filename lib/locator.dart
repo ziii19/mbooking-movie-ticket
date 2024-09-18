@@ -19,9 +19,11 @@ import 'package:mbooking/features/movie/data/repositories/movie_repository_impl.
 import 'package:mbooking/features/movie/domain/repositories/movie_repository.dart';
 import 'package:mbooking/features/movie/domain/usecases/get_now_playing.dart';
 import 'package:mbooking/features/movie/presentation/blocs/movie/movies_bloc.dart';
+import 'package:mbooking/features/movie/presentation/blocs/movie_detail/movie_detail_bloc.dart';
 
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/repositories/user_repository.dart';
+import 'features/movie/domain/usecases/get_movie_detail.dart';
 import 'features/movie/domain/usecases/get_upcoming.dart';
 
 final GetIt sl = GetIt.instance;
@@ -113,6 +115,11 @@ void initLocator() {
       sl<MovieRepository>(),
     ),
   );
+  sl.registerLazySingleton<GetMovieDetail>(
+    () => GetMovieDetail(
+      sl<MovieRepository>(),
+    ),
+  );
 
   // Blocs
   sl.registerFactory<AuthBloc>(
@@ -133,6 +140,11 @@ void initLocator() {
     () => MoviesBloc(
       getNowPlaying: sl<GetNowPlaying>(),
       getUpcoming: sl<GetUpcoming>(),
+    ),
+  );
+  sl.registerFactory(
+    () => MovieDetailBloc(
+      getMovieDetail: sl<GetMovieDetail>(),
     ),
   );
 }
