@@ -17,6 +17,7 @@ import 'package:mbooking/features/auth/presentation/blocs/user/user_bloc.dart';
 import 'package:mbooking/features/movie/data/datasource/movie_remote_data_source.dart';
 import 'package:mbooking/features/movie/data/repositories/movie_repository_impl.dart';
 import 'package:mbooking/features/movie/domain/repositories/movie_repository.dart';
+import 'package:mbooking/features/movie/domain/usecases/get_movie_actor.dart';
 import 'package:mbooking/features/movie/domain/usecases/get_now_playing.dart';
 import 'package:mbooking/features/movie/presentation/blocs/movie/movies_bloc.dart';
 import 'package:mbooking/features/movie/presentation/blocs/movie_detail/movie_detail_bloc.dart';
@@ -120,6 +121,11 @@ void initLocator() {
       sl<MovieRepository>(),
     ),
   );
+  sl.registerLazySingleton<GetMovieActor>(
+    () => GetMovieActor(
+      sl<MovieRepository>(),
+    ),
+  );
 
   // Blocs
   sl.registerFactory<AuthBloc>(
@@ -145,6 +151,7 @@ void initLocator() {
   sl.registerFactory(
     () => MovieDetailBloc(
       getMovieDetail: sl<GetMovieDetail>(),
+      getMovieActor: sl<GetMovieActor>(),
     ),
   );
 }
