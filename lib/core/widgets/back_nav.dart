@@ -4,10 +4,12 @@ import 'package:mbooking/core/theme/app_colors.dart';
 class BackNav extends StatelessWidget {
   final void Function()? onTap;
   final String text;
+  final bool isBgIcon;
   const BackNav({
     super.key,
     this.onTap,
     required this.text,
+    this.isBgIcon = false,
   });
 
   @override
@@ -17,10 +19,14 @@ class BackNav extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: onTap,
-            child: const SizedBox(
-              width: 30,
-              height: 30,
-              child: Icon(
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isBgIcon ? AppColors.enabled : Colors.transparent,
+              ),
+              child: const Icon(
                 Icons.arrow_back_outlined,
                 color: AppColors.white,
                 size: 30,
