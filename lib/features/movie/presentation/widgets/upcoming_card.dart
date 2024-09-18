@@ -47,14 +47,14 @@ class UpcomingCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           MovieCardItem(
-            icon: AssetsSvg.video,
-            text: genre,
+            icon: AssetsSvg.calendar,
+            text: timeDDMMYYY(release),
           ),
           const SizedBox(height: 4),
           MovieCardItem(
-            icon: AssetsSvg.calendar,
-            text: timeDDMMYYY(release),
-          )
+            icon: AssetsSvg.video,
+            text: genre,
+          ),
         ],
       ),
     );

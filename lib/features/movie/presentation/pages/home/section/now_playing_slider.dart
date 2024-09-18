@@ -47,7 +47,7 @@ class _NowPlayingSliderState extends State<_NowPlayingSlider> {
                                     .map((e) => e)
                                     .join(', '),
                                 vote: movie.voteAverage.toStringAsFixed(1),
-                                voteCount: movie.voteCount.toString(),
+                                voteCount: movie.voteCount,
                               ))
                           .toList(),
                       carouselController: _controller,

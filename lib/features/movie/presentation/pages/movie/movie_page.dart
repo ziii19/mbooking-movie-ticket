@@ -113,8 +113,7 @@ class MoviePage extends StatelessWidget {
                                       title: movie.title,
                                       vote:
                                           movie.voteAverage.toStringAsFixed(1),
-                                      voteCount:
-                                          numFormat(movie.voteCount.toString()),
+                                      voteCount: numFormat(movie.voteCount),
                                       genre: getGenreNames(movie.genreIds),
                                       release: movie.releaseDate,
                                     ),

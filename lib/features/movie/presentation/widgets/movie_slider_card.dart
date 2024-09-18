@@ -11,7 +11,7 @@ class MovieSliderCard extends StatefulWidget {
   final String title;
   final String genre;
   final String vote;
-  final String voteCount;
+  final int voteCount;
 
   const MovieSliderCard({
     super.key,
