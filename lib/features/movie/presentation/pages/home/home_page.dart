@@ -7,6 +7,7 @@ import 'package:mbooking/core/utils/capital.dart';
 import 'package:mbooking/features/main/pages/cubit/nav_index_cubit.dart';
 import 'package:mbooking/features/main/pages/main_page.dart';
 import 'package:mbooking/features/movie/presentation/blocs/cubit/category_index_cubit.dart';
+import 'package:mbooking/features/movie/presentation/pages/movie_detail_booking/movie_detail_booking.dart';
 
 import '../../../../../core/utils/get_genre_names.dart';
 import '../../../../auth/presentation/blocs/user/user_bloc.dart';

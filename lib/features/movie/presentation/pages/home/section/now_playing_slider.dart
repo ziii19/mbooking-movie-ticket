@@ -39,15 +39,23 @@ class _NowPlayingSliderState extends State<_NowPlayingSlider> {
                   children: [
                     CarouselSlider(
                       items: movies
-                          .map((movie) => MovieSliderCard(
-                                id: movie.id,
-                                posterUrl: movie.posterPath,
-                                title: movie.title,
-                                genre: getGenreNames(movie.genreIds)
-                                    .map((e) => e)
-                                    .join(', '),
-                                vote: movie.voteAverage.toStringAsFixed(1),
-                                voteCount: movie.voteCount,
+                          .map((movie) => GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MovieDetailBooking.route(movie.id),
+                                  );
+                                },
+                                child: MovieSliderCard(
+                                  id: movie.id,
+                                  posterUrl: movie.posterPath,
+                                  title: movie.title,
+                                  genre: getGenreNames(movie.genreIds)
+                                      .map((e) => e)
+                                      .join(', '),
+                                  vote: movie.voteAverage.toStringAsFixed(1),
+                                  voteCount: movie.voteCount,
+                                ),
                               ))
                           .toList(),
                       carouselController: _controller,
@@ -61,13 +69,12 @@ class _NowPlayingSliderState extends State<_NowPlayingSlider> {
                           });
                         },
                         viewportFraction: 0.8,
-                        // aspectRatio: 17 / 23,
                         height: 600,
                         initialPage: 0,
                         enableInfiniteScroll: true,
                         reverse: false,
                         autoPlay: true,
-                        autoPlayCurve: Curves.easeInOut, // Smooth transition
+                        autoPlayCurve: Curves.easeInOut,
                         enlargeCenterPage: true,
                         scrollDirection: Axis.horizontal,
                       ),
