@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/constants/cinema.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -39,11 +38,8 @@ class CinemaCard extends StatelessWidget {
                   color: AppColors.white,
                 ),
               ),
-              SvgPicture.asset(
-                cinema.icon,
-                width: 32,
-                height: 16,
-              ),
+              Image.asset(cinema.icon,width: 32, height: 16,),
+              
             ],
           ),
           Text(

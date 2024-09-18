@@ -13,6 +13,7 @@ class _PickCinema extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const TitleContentDetailMovie(title: 'Cinema'),
         const SizedBox(height: 16),
