@@ -33,10 +33,6 @@ class _MovieSliderCardState extends State<MovieSliderCard> {
   @override
   void initState() {
     super.initState();
-    getRuntime();
-  }
-
-  getRuntime() async {
     MovieRemoteDataSourceImpl().getMovieDetail(widget.id).then((value) {
       setState(() {
         runtime = value.runtime.toString();
