@@ -18,6 +18,9 @@ import '../../widgets/upcoming_card.dart';
 part 'section/user_section.dart';
 part 'section/now_playing_slider.dart';
 part 'section/coming_soon_section.dart';
+part 'section/promo_section.dart';
+part 'section/service_section.dart';
+part 'section/movie_news_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,29 +37,38 @@ class _HomePageState extends State<HomePage> {
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
         child: SingleChildScrollView(
-          child: Column(children: [
-            const _UserSection(),
-            const SizedBox(height: 16),
-            TextFormField(
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.all(12),
-                prefixIcon: Icon(Icons.search, color: AppColors.gray),
-                hintText: 'Search',
-                fillColor: AppColors.enabled,
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
+          child: Column(
+            children: [
+              const _UserSection(),
+              const SizedBox(height: 16),
+              TextFormField(
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.all(12),
+                  prefixIcon: Icon(Icons.search, color: AppColors.gray),
+                  hintText: 'Search',
+                  fillColor: AppColors.enabled,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                    borderSide: BorderSide.none,
                   ),
-                  borderSide: BorderSide.none,
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            const _NowPlayingSlider(),
-            const SizedBox(height: 16),
-            const _ComingSoonSection(),
-          ]),
+              const SizedBox(height: 16),
+              const _NowPlayingSlider(),
+              const SizedBox(height: 16),
+              const _ComingSoonSection(),
+              const SizedBox(height: 16),
+              const _PromoSection(),
+              const SizedBox(height: 16),
+              const _ServiceSection(),
+              const SizedBox(height: 16),
+              const _MovieNewsSection(),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       )),
     );
