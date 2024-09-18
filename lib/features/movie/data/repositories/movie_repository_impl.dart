@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 import 'package:mbooking/core/error/failures.dart';
 import 'package:mbooking/features/movie/data/datasource/movie_remote_data_source.dart';
+import 'package:mbooking/features/movie/domain/entities/actor.dart';
 
 import 'package:mbooking/features/movie/domain/entities/movie.dart';
 import 'package:mbooking/features/movie/domain/entities/movie_detail.dart';
@@ -51,6 +53,17 @@ class MovieRepositoryImpl implements MovieRepository {
           e.toString(),
         ),
       );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Actor>>> getActorMovie(int id) async {
+    try {
+      final actor = await movieRemoteDataSource.getActorMovie(id);
+
+      return right(actor);
+    } on DioException catch (e) {
+      return left(Failure(e.message!));
     }
   }
 }

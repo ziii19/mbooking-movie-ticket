@@ -15,6 +15,7 @@ final class MovieDetailError extends MovieDetailState {
 
 final class MovieDetailSuccess extends MovieDetailState {
   final MovieDetail movieDetail;
+  final List<Actor> actor;
 
-  MovieDetailSuccess(this.movieDetail);
+  MovieDetailSuccess(this.movieDetail, this.actor);
 }
