@@ -7,6 +7,7 @@ import 'package:mbooking/core/theme/app_colors.dart';
 import 'package:mbooking/core/utils/number_format.dart';
 import 'package:mbooking/core/utils/time_format.dart';
 import 'package:mbooking/core/widgets/back_nav.dart';
+import 'package:mbooking/features/booking/presentation/pages/booking/booking_page.dart';
 import 'package:mbooking/features/movie/domain/entities/actor.dart';
 import 'package:mbooking/features/movie/presentation/widgets/movie_info.dart';
 import 'package:mbooking/features/movie/presentation/widgets/title_content_detail_movie.dart';
@@ -130,7 +131,9 @@ class _MovieDetailBookingState extends State<MovieDetailBooking> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, BookingPage.route());
+          },
           child: const Text('Continue'),
         ),
       ),
