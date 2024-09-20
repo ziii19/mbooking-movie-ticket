@@ -7,10 +7,9 @@ import 'package:mbooking/core/utils/convert_to_idr.dart';
 import 'package:mbooking/core/widgets/back_nav.dart';
 import 'package:mbooking/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:mbooking/features/booking/presentation/widgets/pick_time_item.dart';
-import 'package:mbooking/features/transaction/presentation/pages/midtrans/midtrans_payment.dart';
+import 'package:mbooking/features/transaction/presentation/pages/payment/transaction_detail.dart';
 
 import '../../../../../core/constants/seat_status.dart';
-import '../../../../transaction/presentation/pages/payment/payment_page.dart';
 import '../../widgets/pick_date_item.dart';
 import '../../widgets/trapezoid_shape.dart';
 
@@ -32,33 +31,46 @@ class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: BackNav(
-                text: 'Select seat',
-                onTap: () {
-                  context.read<BookingCubit>().updateState(
-                    seats: [],
-                    wathcingDate: -1,
-                    wathcingTime: -1,
-                  );
-                  Navigator.pop(context);
-                },
+      body: Stack(
+        children: [
+          const SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 120),
+                TrapezoidShape(),
+                _PickSeatSection(),
+                SizedBox(height: 16),
+                _LegendSection(),
+                SizedBox(height: 30),
+                _SelectDateTimeSection(),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              color: AppColors.black,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 10,
+                ),
+                child: BackNav(
+                  text: 'Select seat',
+                  onTap: () {
+                    context.read<BookingCubit>().updateState(
+                      seats: [],
+                      wathcingDate: -1,
+                      wathcingTime: -1,
+                    );
+                    Navigator.pop(context);
+                  },
+                ),
               ),
             ),
-            const SizedBox(height: 16),
-            const TrapezoidShape(),
-            const _PickSeatSection(),
-            const SizedBox(height: 16),
-            const _LegendSection(),
-            const SizedBox(height: 30),
-            const _SelectDateTimeSection(),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: BlocBuilder<BookingCubit, BookingState>(
         builder: (context, state) {
@@ -85,8 +97,7 @@ class _BookingPageState extends State<BookingPage> {
                       ),
                     ),
                     Text(
-                      convertToIdr(
-                          (state.price! * (state.seats?.length ?? 0)), 2),
+                      convertToIdr((state.total), 2),
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
@@ -112,14 +123,12 @@ class _BookingPageState extends State<BookingPage> {
                       showSnackBar(context, 'Please select time');
                       return;
                     }
+                    context.read<BookingCubit>().updateState(
+                        id: DateTime.now().millisecondsSinceEpoch.toString());
 
-                    Navigator.push(
-                        context,
-                        MidtransPaymentPage.route(
-                            DateTime.now().millisecondsSinceEpoch.toString(),
-                            state.price! * (state.seats!.length)));
+                    Navigator.push(context, TransactionDetail.route());
                   },
-                  child: const Text("Buy Ticket"),
+                  child: const Text("Continue"),
                 ),
               ],
             ),

@@ -17,9 +17,11 @@ class BookingCubit extends Cubit<BookingState> {
       updatedSeats.remove(seat); // Hapus jika ada
     }
 
-    print(updatedSeats);
-
     emit(state.copyWith(seats: updatedSeats));
+  }
+
+  void addDiscount(int discount) {
+    emit(state.copyWith(discount: discount));
   }
 
   void updateState({
@@ -32,6 +34,8 @@ class BookingCubit extends Cubit<BookingState> {
     int? wathcingDate,
     int? wathcingTime,
     int? price,
+    int? disc,
+    String? id,
   }) {
     emit(
       state.copyWith(
@@ -44,17 +48,10 @@ class BookingCubit extends Cubit<BookingState> {
         wathcingDate: wathcingDate ?? state.wathcingDate,
         wathcingTime: wathcingTime ?? state.wathcingTime,
         price: price ?? state.price,
+        discount: disc ?? state.discount,
+        trxId: id,
       ),
     );
-    print(state.cinema);
-    print(state.movieTitle);
-    print(state.movieImage);
-    print(state.movieRuntime);
-    print(state.movieGenres);
-    print(state.seats);
-    print(state.wathcingDate);
-    print(state.wathcingTime);
-    print(state.price);
   }
 
   void resetState() {

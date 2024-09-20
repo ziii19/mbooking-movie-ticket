@@ -11,6 +11,7 @@ class BookingState {
       this.wathcingDate,
       this.wathcingTime,
       this.price,
+      this.discount = 0,
       this.trxId,
       this.uid,
       this.trxTime,
@@ -25,6 +26,7 @@ class BookingState {
   final int? wathcingDate;
   final int? wathcingTime;
   final int? price;
+  final int? discount;
   final String? trxId;
   final String? uid;
   final int? trxTime;
@@ -39,6 +41,10 @@ class BookingState {
               ? SeatStatus.selected
               : SeatStatus.available;
 
+  int get total {
+    return (price! * seats!.length) - discount!;
+  }
+
   BookingState copyWith({
     String? movieTitle,
     String? movieImage,
@@ -49,6 +55,7 @@ class BookingState {
     int? wathcingDate,
     int? wathcingTime,
     int? price,
+    int? discount,
     String? trxId,
     String? uid,
     int? trxTime,
@@ -64,6 +71,7 @@ class BookingState {
       wathcingDate: wathcingDate ?? this.wathcingDate,
       wathcingTime: wathcingTime ?? this.wathcingTime,
       price: price ?? this.price,
+      discount: discount ?? this.discount,
       trxId: trxId ?? this.trxId,
       uid: uid ?? this.uid,
       trxTime: trxTime ?? this.trxTime,
