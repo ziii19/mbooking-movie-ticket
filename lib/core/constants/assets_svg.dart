@@ -21,4 +21,6 @@ class AssetsSvg {
   static const String video = '$_path/video.svg';
   static const String sms = '$_path/sms.svg';
   static const String star = '$_path/star.svg';
+  static const String discount = '$_path/discount.svg';
+  static const String videoPlay = '$_path/video-play.svg';
 }
