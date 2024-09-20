@@ -16,6 +16,7 @@ class BackNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: onTap,
@@ -33,19 +34,20 @@ class BackNav extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 90),
-          SizedBox(
-            width: MediaQuery.of(context).size.width - 120 - 48,
-            child: Text(
-              text,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.white),
-            ),
-          )
+          Text(
+            text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: AppColors.white),
+          ),
+          const SizedBox(
+            width: 30,
+            height: 10,
+          ),
         ],
       ),
     );
