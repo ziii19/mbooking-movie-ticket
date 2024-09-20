@@ -5,7 +5,7 @@ import '../../../../core/theme/app_colors.dart';
 class PickTimeItem extends StatelessWidget {
   final int? selectedIndex;
   final Function(int) onItemTapped;
-  final List<int> times;
+  final List<String> times;
   const PickTimeItem({
     super.key,
     this.selectedIndex,
@@ -42,7 +42,7 @@ class PickTimeItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    '$time:00',
+                    time,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
