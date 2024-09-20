@@ -41,8 +41,9 @@ class _MovieSection extends StatelessWidget {
                       ),
                     ),
                     MovieCardItem(
-                        icon: AssetsSvg.video,
+                        icon: AssetsSvg.videoPlay,
                         text: state.movieGenres!
+                            .take(2)
                             .map(
                               (e) => e,
                             )

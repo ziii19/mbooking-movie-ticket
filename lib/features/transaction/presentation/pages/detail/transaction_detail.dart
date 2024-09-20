@@ -12,6 +12,7 @@ import 'package:mbooking/core/utils/time_format.dart';
 import 'package:mbooking/core/widgets/back_nav.dart';
 import 'package:mbooking/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:mbooking/features/movie/presentation/widgets/movie_card_item.dart';
+import 'package:mbooking/features/transaction/presentation/blocs/transaction/transaction_bloc.dart';
 import 'package:mbooking/features/transaction/presentation/pages/midtrans/midtrans_payment.dart';
 
 import '../../widgets/trx_info.dart';
@@ -39,7 +40,7 @@ class TransactionDetail extends StatelessWidget {
                 onTap: () {
                   context.read<BookingCubit>().updateState(
                         disc: 0,
-                        id: '',
+                        trxId: '',
                       );
                   Navigator.pop(context);
                 },
@@ -61,6 +62,11 @@ class TransactionDetail extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
               onPressed: () {
+                context.read<TransactionBloc>().add(
+                      AddTransaction(
+                        state.toTransactionModel(),
+                      ),
+                    );
                 Navigator.push(
                     context,
                     MidtransPaymentPage.route(
