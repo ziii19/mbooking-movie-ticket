@@ -6,6 +6,8 @@ import 'package:mbooking/core/theme/app_colors.dart';
 import 'package:mbooking/core/utils/capital.dart';
 import 'package:mbooking/features/auth/presentation/blocs/auth/auth_bloc.dart';
 import 'package:mbooking/features/auth/presentation/pages/auth/auth_page.dart';
+import 'package:mbooking/features/main/pages/cubit/nav_index_cubit.dart';
+import 'package:mbooking/features/main/pages/main_page.dart';
 
 import '../../../../auth/presentation/blocs/user/user_bloc.dart';
 import '../../widgets/build_profile_menu.dart';
@@ -46,7 +48,10 @@ class ProfilePage extends StatelessWidget {
                 BuildProfileMenu(
                   icon: AssetsSvg.ticket2,
                   text: 'My ticket',
-                  onTap: () {},
+                  onTap: () {
+                    context.read<NavIndexCubit>().setIndex(1);
+                    Navigator.push(context, MainPage.route());
+                  },
                 ),
                 BuildProfileMenu(
                   icon: AssetsSvg.shoppingCart,
