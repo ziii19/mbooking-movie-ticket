@@ -1,5 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbooking/core/constants/movie_booking_properti.dart';
+import 'package:mbooking/core/constants/transaction_status.dart';
+import 'package:mbooking/features/transaction/data/models/transaction_model.dart';
 
+import '../../../../core/constants/cinema.dart';
 import '../../../../core/constants/seat_status.dart';
 
 part 'booking_state.dart';
@@ -29,13 +33,14 @@ class BookingCubit extends Cubit<BookingState> {
     String? movieImage,
     int? movieRuntime,
     List<String>? movieGenres,
-    String? cinema,
+    int? cinema,
     List<String>? seats,
     int? wathcingDate,
     int? wathcingTime,
     int? price,
     int? disc,
-    String? id,
+    String? trxId,
+    String? uid,
   }) {
     emit(
       state.copyWith(
@@ -49,7 +54,8 @@ class BookingCubit extends Cubit<BookingState> {
         wathcingTime: wathcingTime ?? state.wathcingTime,
         price: price ?? state.price,
         discount: disc ?? state.discount,
-        trxId: id,
+        trxId: trxId,
+        uid: uid,
       ),
     );
   }

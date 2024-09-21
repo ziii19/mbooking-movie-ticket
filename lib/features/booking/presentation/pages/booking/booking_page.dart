@@ -7,7 +7,7 @@ import 'package:mbooking/core/utils/convert_to_idr.dart';
 import 'package:mbooking/core/widgets/back_nav.dart';
 import 'package:mbooking/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:mbooking/features/booking/presentation/widgets/pick_time_item.dart';
-import 'package:mbooking/features/transaction/presentation/pages/payment/transaction_detail.dart';
+import 'package:mbooking/features/transaction/presentation/pages/detail/transaction_detail.dart';
 
 import '../../../../../core/constants/seat_status.dart';
 import '../../widgets/pick_date_item.dart';
@@ -124,7 +124,7 @@ class _BookingPageState extends State<BookingPage> {
                       return;
                     }
                     context.read<BookingCubit>().updateState(
-                        id: DateTime.now().millisecondsSinceEpoch.toString());
+                        trxId: DateTime.now().millisecondsSinceEpoch.toString());
 
                     Navigator.push(context, TransactionDetail.route());
                   },

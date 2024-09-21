@@ -50,12 +50,13 @@ class _MovieSection extends StatelessWidget {
                             .join(', ')),
                     const SizedBox(height: 10),
                     MovieCardItem(
-                        icon: AssetsSvg.location, text: state.cinema!),
+                        icon: AssetsSvg.location,
+                        text: listCinema[state.cinema!].location),
                     const SizedBox(height: 10),
                     MovieCardItem(
                         icon: AssetsSvg.clock,
                         text:
-                            '${timeDDMMYYY(MovieBookingProperti.dates[state.wathcingDate!].toString())} . ${MovieBookingProperti.times[state.wathcingTime!]}'),
+                            '${timeDDMMYYY(MovieBookingProperti.dates[state.wathcingDate!].toString())} • ${MovieBookingProperti.times[state.wathcingTime!]}'),
                   ],
                 ),
               ))

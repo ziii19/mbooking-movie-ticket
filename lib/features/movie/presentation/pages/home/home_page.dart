@@ -11,6 +11,7 @@ import 'package:mbooking/features/movie/presentation/pages/movie_detail_booking/
 
 import '../../../../../core/utils/get_genre_names.dart';
 import '../../../../auth/presentation/blocs/user/user_bloc.dart';
+import '../../../../booking/presentation/cubit/booking_cubit.dart';
 import '../../blocs/movie/movies_bloc.dart';
 import '../../widgets/movie_slider_card.dart';
 import '../../widgets/title_section.dart';

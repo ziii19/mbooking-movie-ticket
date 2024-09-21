@@ -8,6 +8,7 @@ import 'package:mbooking/core/utils/alert.dart';
 import 'package:mbooking/core/utils/number_format.dart';
 import 'package:mbooking/core/utils/time_format.dart';
 import 'package:mbooking/core/widgets/back_nav.dart';
+import 'package:mbooking/features/auth/presentation/blocs/user/user_bloc.dart';
 import 'package:mbooking/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:mbooking/features/booking/presentation/pages/booking/booking_page.dart';
 import 'package:mbooking/features/movie/domain/entities/actor.dart';
@@ -148,13 +149,15 @@ class _MovieDetailBookingState extends State<MovieDetailBooking> {
               showSnackBar(context, 'Please pick a cinema');
               return;
             }
+            final user = context.read<UserBloc>().state as UserSuccess;
             context.read<BookingCubit>().updateState(
-                  cinema: listCinema[cinemaSelected!].name,
+                  cinema: cinemaSelected!,
                   price: listCinema[cinemaSelected!].price,
                   movieGenres: _movieDetail!.genres,
-                  movieImage: _movieDetail!.backdropPath,
+                  movieImage: _movieDetail!.posterPath,
                   movieRuntime: _movieDetail!.runtime,
                   movieTitle: _movieDetail!.title,
+                  uid: user.user.uid,
                 );
             Navigator.push(context, BookingPage.route());
           },

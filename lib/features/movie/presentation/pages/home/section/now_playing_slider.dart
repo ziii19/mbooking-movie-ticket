@@ -41,6 +41,7 @@ class _NowPlayingSliderState extends State<_NowPlayingSlider> {
                       items: movies
                           .map((movie) => GestureDetector(
                                 onTap: () {
+                                  context.read<BookingCubit>().resetState();
                                   Navigator.push(
                                     context,
                                     MovieDetailBooking.route(movie.id),
