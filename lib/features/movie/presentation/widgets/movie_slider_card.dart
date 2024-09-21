@@ -33,10 +33,16 @@ class _MovieSliderCardState extends State<MovieSliderCard> {
   @override
   void initState() {
     super.initState();
+    getRuntime();
+  }
+
+  getRuntime() {
     MovieRemoteDataSourceImpl().getMovieDetail(widget.id).then((value) {
-      setState(() {
-        runtime = value.runtime.toString();
-      });
+      if (mounted) {
+        setState(() {
+          runtime = value.runtime.toString();
+        });
+      }
     });
   }
 
