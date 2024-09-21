@@ -12,7 +12,10 @@ final class GetTransactionSuccess extends TransactionState {
   GetTransactionSuccess(this.transactions);
 }
 
-final class TransactionSuccess extends TransactionState {}
+final class TransactionSuccess extends TransactionState {
+  final Transaction transaction;
+  TransactionSuccess(this.transaction);
+}
 
 final class TransactionFailed extends TransactionState {
   final String error;

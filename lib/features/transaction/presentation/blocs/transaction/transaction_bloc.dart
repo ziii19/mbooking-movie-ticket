@@ -29,7 +29,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           await _createTransaction(CreateTransactionParams(event.transaction));
       result.fold(
         (l) => emit(TransactionFailed(l.message)),
-        (r) => emit(TransactionSuccess()),
+        (r) => emit(TransactionSuccess(r)),
       );
     });
     on<BlocUpdateTransaction>((event, emit) async {
@@ -38,7 +38,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           await _updateTransaction(UpdateTransactionParams(event.transaction));
       result.fold(
         (l) => emit(TransactionFailed(l.message)),
-        (r) => emit(TransactionSuccess()),
+        (r) => emit(TransactionSuccess(r)),
       );
     });
     on<GetTransaction>((event, emit) async {
