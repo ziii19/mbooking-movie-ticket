@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbooking/features/main/pages/cubit/nav_index_cubit.dart';
 import 'package:mbooking/features/main/pages/main_page.dart';
 
-import '../../../../booking/presentation/cubit/booking_cubit.dart';
 
 class PaymentSuccessPage extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -27,7 +26,6 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
         title: 'Payment Success',
         desc: 'Thank you for your purchase!',
         btnOkOnPress: () {
-          context.read<BookingCubit>().resetState();
           context.read<NavIndexCubit>().setIndex(1);
           Navigator.pushAndRemoveUntil(
             context,
