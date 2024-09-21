@@ -9,6 +9,7 @@ environment:
   sdk: ^3.5.1
 
 dependencies:
+  awesome_dialog: ^3.2.1
   carousel_slider: ^5.0.0
   cloud_firestore: ^5.4.1
   dartz: ^0.10.1
