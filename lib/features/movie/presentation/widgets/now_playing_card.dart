@@ -36,6 +36,10 @@ class _NowPlayingCardState extends State<NowPlayingCard> {
   @override
   void initState() {
     super.initState();
+    getRuntime();
+  }
+
+  getRuntime() {
     MovieRemoteDataSourceImpl().getMovieDetail(widget.id).then((value) {
       setState(() {
         runtime = value.runtime;

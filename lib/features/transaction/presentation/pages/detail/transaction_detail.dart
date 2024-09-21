@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mbooking/core/constants/assets_svg.dart';
+import 'package:mbooking/core/constants/cinema.dart';
 import 'package:mbooking/core/constants/discount.dart';
 import 'package:mbooking/core/constants/movie_booking_properti.dart';
 import 'package:mbooking/core/theme/app_colors.dart';
@@ -12,9 +12,10 @@ import 'package:mbooking/core/utils/time_format.dart';
 import 'package:mbooking/core/widgets/back_nav.dart';
 import 'package:mbooking/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:mbooking/features/movie/presentation/widgets/movie_card_item.dart';
-import 'package:mbooking/features/transaction/presentation/blocs/transaction/transaction_bloc.dart';
 import 'package:mbooking/features/transaction/presentation/pages/midtrans/midtrans_payment.dart';
 
+import '../../../../../core/utils/text_formatter.dart';
+import '../../blocs/transaction/transaction_bloc.dart';
 import '../../widgets/trx_info.dart';
 
 part 'section/movie_section.dart';
