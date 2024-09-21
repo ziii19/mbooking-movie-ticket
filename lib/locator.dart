@@ -21,11 +21,18 @@ import 'package:mbooking/features/movie/domain/usecases/get_movie_actor.dart';
 import 'package:mbooking/features/movie/domain/usecases/get_now_playing.dart';
 import 'package:mbooking/features/movie/presentation/blocs/movie/movies_bloc.dart';
 import 'package:mbooking/features/movie/presentation/blocs/movie_detail/movie_detail_bloc.dart';
+import 'package:mbooking/features/transaction/data/datasource/transaction_remote_data_source.dart';
+import 'package:mbooking/features/transaction/data/repositories/transaction_repository_impl.dart';
+import 'package:mbooking/features/transaction/presentation/blocs/transaction/transaction_bloc.dart';
 
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/repositories/user_repository.dart';
 import 'features/movie/domain/usecases/get_movie_detail.dart';
 import 'features/movie/domain/usecases/get_upcoming.dart';
+import 'features/transaction/domain/repositories/transaction_repository.dart';
+import 'features/transaction/domain/usecases/create_transaction.dart';
+import 'features/transaction/domain/usecases/get_user_transaction.dart';
+import 'features/transaction/domain/usecases/update_transaction.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -57,6 +64,11 @@ void initLocator() {
   sl.registerLazySingleton<MovieRemoteDataSource>(
     () => MovieRemoteDataSourceImpl(),
   );
+  sl.registerLazySingleton<TransactionRemoteDataSource>(
+    () => TransactionRemoteDataSourceImpl(
+      sl<FirebaseFirestore>(),
+    ),
+  );
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(
@@ -72,6 +84,11 @@ void initLocator() {
   sl.registerLazySingleton<MovieRepository>(
     () => MovieRepositoryImpl(
       sl<MovieRemoteDataSource>(),
+    ),
+  );
+  sl.registerLazySingleton<TransactionRepository>(
+    () => TransactionRepositoryImpl(
+      sl<TransactionRemoteDataSource>(),
     ),
   );
 
@@ -127,6 +144,22 @@ void initLocator() {
     ),
   );
 
+  sl.registerLazySingleton<CreateTransaction>(
+    () => CreateTransaction(
+      sl<TransactionRepository>(),
+    ),
+  );
+  sl.registerLazySingleton<UpdateTransaction>(
+    () => UpdateTransaction(
+      sl<TransactionRepository>(),
+    ),
+  );
+  sl.registerLazySingleton<GetUserTransaction>(
+    () => GetUserTransaction(
+      sl<TransactionRepository>(),
+    ),
+  );
+
   // Blocs
   sl.registerFactory<AuthBloc>(
     () => AuthBloc(
@@ -152,6 +185,13 @@ void initLocator() {
     () => MovieDetailBloc(
       getMovieDetail: sl<GetMovieDetail>(),
       getMovieActor: sl<GetMovieActor>(),
+    ),
+  );
+  sl.registerFactory(
+    () => TransactionBloc(
+      createTransaction: sl<CreateTransaction>(),
+      updateTransaction: sl<UpdateTransaction>(),
+      getUserTransaction: sl<GetUserTransaction>(),
     ),
   );
 }

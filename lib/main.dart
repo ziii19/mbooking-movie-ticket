@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbooking/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:mbooking/features/main/pages/cubit/nav_index_cubit.dart';
 import 'package:mbooking/features/movie/presentation/blocs/cubit/category_index_cubit.dart';
+import 'package:mbooking/features/transaction/presentation/blocs/transaction/transaction_bloc.dart';
 
 import 'core/theme/theme.dart';
 import 'core/utils/rand_int.dart';
@@ -20,6 +23,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   initLocator();
 
@@ -34,13 +41,19 @@ void main() async {
       create: (context) => sl<MoviesBloc>(),
     ),
     BlocProvider(
+      create: (context) => sl<MovieDetailBloc>(),
+    ),
+    BlocProvider(
+      create: (context) => sl<TransactionBloc>(),
+    ),
+    BlocProvider(
       create: (context) => NavIndexCubit(),
     ),
     BlocProvider(
       create: (context) => CategoryIndexCubit(),
     ),
     BlocProvider(
-      create: (context) => sl<MovieDetailBloc>(),
+      create: (context) => BookingCubit(),
     ),
   ], child: const MainApp()));
 }
