@@ -21,3 +21,11 @@ String timeHHSMM(int time) {
 
   return '$hours hour $minutes minutes';
 }
+
+String timeHHhMM(String waktu) {
+  List<String> parts = waktu.split(":");
+  String jam = parts[0];
+  String menit = parts[1];
+
+  return "${jam}h$menit’";
+}
