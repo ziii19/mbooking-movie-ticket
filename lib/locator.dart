@@ -27,6 +27,7 @@ import 'package:mbooking/features/transaction/presentation/blocs/transaction/tra
 
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/repositories/user_repository.dart';
+import 'features/auth/domain/usecases/sign_in_google.dart';
 import 'features/movie/domain/usecases/get_movie_detail.dart';
 import 'features/movie/domain/usecases/get_upcoming.dart';
 import 'features/transaction/domain/repositories/transaction_repository.dart';
@@ -52,6 +53,7 @@ void initLocator() {
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(
       sl<FirebaseAuth>(),
+      sl<UserRepoRemoteDataSource>(),
     ),
   );
   sl.registerLazySingleton<UserRepoRemoteDataSource>(
@@ -100,6 +102,11 @@ void initLocator() {
   );
   sl.registerLazySingleton<UserSignUp>(
     () => UserSignUp(
+      sl<AuthRepository>(),
+    ),
+  );
+  sl.registerLazySingleton<SignInGoogle>(
+    () => SignInGoogle(
       sl<AuthRepository>(),
     ),
   );
@@ -166,6 +173,7 @@ void initLocator() {
       userLogin: sl<UserLogin>(),
       userSignUp: sl<UserSignUp>(),
       userSignOut: sl<UserSignOut>(),
+      signInGoogle: sl<SignInGoogle>(),
     ),
   );
   sl.registerFactory<UserBloc>(
