@@ -98,7 +98,32 @@ class _MidtransPaymentPageState extends State<MidtransPaymentPage> {
     showSnackBar(context, message);
   }
 
-  void backWarning() async {}
+  void backWarning() {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.rightSlide,
+      title: 'Warning',
+      desc: 'Are you sure you want to go back?',
+      btnCancelOnPress: () {
+        Navigator.pop(context);
+      },
+      btnOkOnPress: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MainPage.route(),
+          (route) => false,
+        );
+        context.read<TransactionBloc>().add(
+              BlocUpdateTransaction(
+                _transaction!.toModel().copyWith(
+                      status: TransactionStatus.failed.statusName,
+                    ),
+              ),
+            );
+      },
+    ).show();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,23 +136,7 @@ class _MidtransPaymentPageState extends State<MidtransPaymentPage> {
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                AwesomeDialog(
-                  context: context,
-                  dialogType: DialogType.warning,
-                  animType: AnimType.rightSlide,
-                  title: 'Warning',
-                  desc: 'Are you sure you want to go back?',
-                  btnCancelOnPress: () {
-                    Navigator.pop(context);
-                  },
-                  btnOkOnPress: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MainPage.route(),
-                      (route) => false,
-                    );
-                  },
-                ).show();
+                backWarning();
               },
               icon: const Icon(Icons.arrow_back),
             ),
