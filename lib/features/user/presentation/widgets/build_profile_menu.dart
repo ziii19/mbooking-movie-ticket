@@ -33,6 +33,10 @@ class BuildProfileMenu extends StatelessWidget {
               icon,
               width: 30,
               height: 30,
+              colorFilter: const ColorFilter.mode(
+                AppColors.white,
+                BlendMode.srcIn,
+              ),
             ),
             const SizedBox(width: 16),
             Expanded(
