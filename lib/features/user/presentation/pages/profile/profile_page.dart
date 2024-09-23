@@ -12,6 +12,7 @@ import 'package:mbooking/features/main/pages/main_page.dart';
 import '../../../../auth/presentation/blocs/user/user_bloc.dart';
 import '../../widgets/build_profile_menu.dart';
 import '../../widgets/build_user_info.dart';
+import '../feedback/feedback_page.dart';
 
 part 'section/user_profile.dart';
 
@@ -62,6 +63,16 @@ class ProfilePage extends StatelessWidget {
                   icon: AssetsSvg.lock,
                   text: 'Change password',
                   onTap: () {},
+                ),
+                BuildProfileMenu(
+                  icon: AssetsSvg.note,
+                  text: 'Send feedback',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      FeedbackPage.route(),
+                    );
+                  },
                 ),
                 const Spacer(),
                 OutlinedButton(
