@@ -88,19 +88,23 @@ class _MovieCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Row(
-                  children: List.generate(
-                    5,
-                    (index) => Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                      child: SvgPicture.asset(
-                        AssetsSvg.star,
-                        width: 32,
-                        height: 32,
+                child: LayoutBuilder(builder: (context, constraints) {
+                  final width = constraints.maxWidth;
+
+                  return Row(
+                    children: List.generate(
+                      5,
+                      (index) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                        child: SvgPicture.asset(
+                          AssetsSvg.star,
+                          width: width > 400 ? 32 : 20,
+                          height: width > 400 ? 32 : 20,
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                }),
               ),
               GestureDetector(
                 onTap: () {},

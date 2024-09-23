@@ -16,8 +16,8 @@ class _PromoSection extends StatelessWidget {
               3,
               (index) => Container(
                 margin: EdgeInsets.only(right: index == 2 ? 0 : 16),
-                width: 360,
-                height: 225,
+                width: MediaQuery.of(context).size.width - 32,
+                height: 200,
                 decoration: BoxDecoration(
                   color: AppColors.gray,
                   borderRadius: BorderRadius.circular(16),
