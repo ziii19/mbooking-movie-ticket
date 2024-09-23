@@ -53,15 +53,21 @@ class _FormSignUpState extends State<_FormSignUp> {
             ),
           );
         } else if (state is AuthSuccess) {
-          context.read<UserBloc>().add(
-                CreateNewUser(
-                  uid: state.uid,
-                  name: nameController.text,
-                  email: emailController.text,
-                  phoneNumber: null,
-                  photoUrl: image,
-                ),
-              );
+          if (nameController.text.isNotEmpty ||
+              emailController.text.isNotEmpty ||
+              passwordController.text.isNotEmpty) {
+            context.read<UserBloc>().add(
+                  CreateNewUser(
+                    uid: state.uid,
+                    name: nameController.text,
+                    email: emailController.text,
+                    phoneNumber: null,
+                    photoUrl: image,
+                  ),
+                );
+          } else {
+            context.read<UserBloc>().add(GetUser());
+          }
         }
       },
       child: Form(
@@ -110,10 +116,8 @@ class _FormSignUpState extends State<_FormSignUp> {
               hintText: 'adam@gmail.com',
             ),
             const SizedBox(height: 16),
-            InputText(
+            InputPassword(
               controller: passwordController,
-              label: 'Password',
-              hintText: '**********',
             ),
             const SizedBox(height: 32),
             BlocBuilder<AuthBloc, AuthState>(

@@ -26,22 +26,39 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: BlocListener<UserBloc, UserState>(
-        listener: (context, state) {
-          if (state is UserError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-              ),
-            );
-          } else if (state is UserSuccess) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MainPage.route(),
-              (route) => false,
-            );
-          }
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state is AuthError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                  ),
+                );
+              } else if (state is AuthSuccess) {
+                context.read<UserBloc>().add(GetUser());
+              }
+            },
+          ),
+          BlocListener<UserBloc, UserState>(
+            listener: (context, state) {
+              if (state is UserError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                  ),
+                );
+              } else if (state is UserSuccess) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MainPage.route(),
+                  (route) => false,
+                );
+              }
+            },
+          )
+        ],
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           body: SingleChildScrollView(
@@ -71,7 +88,9 @@ class _SignInPageState extends State<SignInPage> {
                       backgroundColor: AppColors.enabled,
                       foregroundColor: AppColors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<AuthBloc>().add(AuthGoogleSignIn());
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

@@ -32,58 +32,41 @@ class _FormSignInState extends State<_FormSignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-            ),
-          );
-        } else if (state is AuthSuccess) {
-          context.read<UserBloc>().add(GetUser(uid: state.uid));
-        }
-      },
-      child: Form(
-        key: formKey,
-        child: Column(
-          children: [
-            const SizedBox(height: 50),
-            InputText(
-              controller: emailController,
-              label: 'Email',
-              hintText: 'adam@gmail.com',
-            ),
-            const SizedBox(height: 16),
-            InputText(
-              controller: passwordController,
-              label: 'Password',
-              hintText: '**********',
-            ),
-            const SizedBox(height: 32),
-            BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                final userLoading =
-                    context.read<UserBloc>().state is UserLoading;
-                return ElevatedButton(
-                  onPressed: state is AuthLoading || userLoading
-                      ? null
-                      : () {
-                          signIn();
-                        },
-                  child: state is AuthLoading || userLoading
-                      ? const SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(
-                            color: AppColors.yellow,
-                          ))
-                      : const Text('Sign In'),
-                );
-              },
-            ),
-          ],
-        ),
+    return Form(
+      key: formKey,
+      child: Column(
+        children: [
+          const SizedBox(height: 50),
+          InputText(
+            controller: emailController,
+            label: 'Email',
+            hintText: 'adam@gmail.com',
+          ),
+          const SizedBox(height: 16),
+          InputPassword(
+            controller: passwordController,
+          ),
+          const SizedBox(height: 32),
+          BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              return ElevatedButton(
+                onPressed: state is UserLoading
+                    ? null
+                    : () {
+                        signIn();
+                      },
+                child: state is UserLoading
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          color: AppColors.yellow,
+                        ))
+                    : const Text('Sign In'),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

@@ -74,7 +74,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       backgroundColor: AppColors.enabled,
                       foregroundColor: AppColors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<AuthBloc>().add(AuthGoogleSignIn());
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
