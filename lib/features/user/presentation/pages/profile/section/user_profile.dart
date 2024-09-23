@@ -46,14 +46,25 @@ class _UserProfile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      capitalize(user.name),
-                      style: const TextStyle(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 30,
-                        height: 2,
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            capitalize(user.name),
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 30,
+                              height: 2,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: SvgPicture.asset(AssetsSvg.edit),
+                        )
+                      ],
                     ),
                     BuildUserInfo(
                       icon: AssetsSvg.call,
@@ -68,10 +79,6 @@ class _UserProfile extends StatelessWidget {
                   ],
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(AssetsSvg.edit),
-              )
             ],
           );
         }
