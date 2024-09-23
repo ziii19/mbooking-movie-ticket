@@ -26,11 +26,14 @@ class MovieCardItem extends StatelessWidget {
           height: 16,
         ),
         const SizedBox(width: 8),
-        Text(
-          text,
-          style: const TextStyle(
-            fontSize: 12,
-            color: AppColors.white,
+        Expanded(
+          child: Text(
+            text,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 12,
+              color: AppColors.white,
+            ),
           ),
         )
       ],
