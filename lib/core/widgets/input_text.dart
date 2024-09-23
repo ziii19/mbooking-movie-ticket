@@ -50,3 +50,62 @@ class InputText extends StatelessWidget {
     );
   }
 }
+
+class InputPassword extends StatefulWidget {
+  const InputPassword({super.key, this.controller});
+
+  final TextEditingController? controller;
+
+  @override
+  State<InputPassword> createState() => _InputPasswordState();
+}
+
+class _InputPasswordState extends State<InputPassword> {
+  bool passwordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible = true;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      obscureText: passwordVisible,
+      controller: widget.controller,
+      style: const TextStyle(color: AppColors.white),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Password is required';
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(14.0),
+        hintText: '*******',
+        labelText: 'Password',
+        labelStyle: const TextStyle(color: AppColors.white),
+        border: const OutlineInputBorder(),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.white,
+          ),
+        ),
+        suffixIcon: IconButton(
+          icon: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off),
+          onPressed: () {
+            setState(
+              () {
+                passwordVisible = !passwordVisible;
+              },
+            );
+          },
+        ),
+        alignLabelWithHint: false,
+      ),
+      keyboardType: TextInputType.visiblePassword,
+      textInputAction: TextInputAction.done,
+    );
+  }
+}
