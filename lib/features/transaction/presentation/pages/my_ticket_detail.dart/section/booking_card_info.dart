@@ -12,45 +12,48 @@ class _BookingCardInfo extends StatelessWidget {
   final String textDown;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SvgPicture.asset(
-          icon,
-          width: 48,
-          height: 48,
-          colorFilter: const ColorFilter.mode(
-            AppColors.black,
-            BlendMode.srcIn,
-          ),
-        ),
-        const SizedBox(width: 8),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              textUp,
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-                color: AppColors.black,
-              ),
+    return LayoutBuilder(builder: (context, constraints) {
+      final isSmall = constraints.maxWidth <= 400;
+      return Row(
+        children: [
+          SvgPicture.asset(
+            icon,
+            width: isSmall ? 30 : 48,
+            height: isSmall ? 30 : 48,
+            colorFilter: const ColorFilter.mode(
+              AppColors.black,
+              BlendMode.srcIn,
             ),
-            const SizedBox(height: 8),
-            SizedBox(
-              width: 100,
-              child: Text(
-                textDown,
-                maxLines: 3,
-                style: const TextStyle(
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                textUp,
+                style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 16,
+                  fontSize: isSmall ? 14 : 16,
                   color: AppColors.black,
                 ),
               ),
-            ),
-          ],
-        ),
-      ],
-    );
+              const SizedBox(height: 8),
+              SizedBox(
+                width: 100,
+                child: Text(
+                  textDown,
+                  maxLines: 3,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: isSmall ? 14 : 16,
+                    color: AppColors.black,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    });
   }
 }

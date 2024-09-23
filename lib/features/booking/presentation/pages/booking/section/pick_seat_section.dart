@@ -16,58 +16,64 @@ class _PickSeatSectionState extends State<_PickSeatSection> {
         return SizedBox(
           width: double.infinity,
           height: 10 * 40,
-          child: GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 12,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-            ),
-            itemCount: MovieBookingProperti.seats.length,
-            itemBuilder: (context, index) {
-              String seat = MovieBookingProperti.seats[index];
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final width = constraints.maxWidth;
+              return GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 12,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemCount: MovieBookingProperti.seats.length,
+                itemBuilder: (context, index) {
+                  String seat = MovieBookingProperti.seats[index];
 
-              return GestureDetector(
-                onTap: () {
-                  if (reservedSeats.contains(seat)) {
-                    showSnackBar(context, 'This seat is reserved');
-                    return;
-                  }
+                  return GestureDetector(
+                    onTap: () {
+                      if (reservedSeats.contains(seat)) {
+                        showSnackBar(context, 'This seat is reserved');
+                        return;
+                      }
 
-                  if (state.seats!.contains(seat)) {
-                    context.read<BookingCubit>().pickSeat(seat);
-                    return;
-                  }
+                      if (state.seats!.contains(seat)) {
+                        context.read<BookingCubit>().pickSeat(seat);
+                        return;
+                      }
 
-                  if (state.seats!.length >= 3) {
-                    showSnackBar(
-                        context, 'You can not select more than 3 seats');
-                    return;
-                  }
+                      if (state.seats!.length >= 3) {
+                        showSnackBar(
+                            context, 'You can not select more than 3 seats');
+                        return;
+                      }
 
-                  context.read<BookingCubit>().pickSeat(seat);
-                },
-                child: Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: Seat.seatColor(
-                      state.seatStatusChecker(seat, reservedSeats),
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      seat,
-                      style: TextStyle(
-                        color: Seat.textColor(
+                      context.read<BookingCubit>().pickSeat(seat);
+                    },
+                    child: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        color: Seat.seatColor(
                           state.seatStatusChecker(seat, reservedSeats),
                         ),
-                        fontWeight: FontWeight.bold,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Center(
+                        child: Text(
+                          seat,
+                          style: TextStyle(
+                            color: Seat.textColor(
+                              state.seatStatusChecker(seat, reservedSeats),
+                            ),
+                            fontWeight: FontWeight.bold,
+                            fontSize: width > 400 ? 14 : 12,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               );
             },
           ),
