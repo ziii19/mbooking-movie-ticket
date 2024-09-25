@@ -28,11 +28,14 @@ class MovieDetailTrxItem extends StatelessWidget {
           height: 20,
         ),
         const SizedBox(width: 8),
-        Text(
-          text,
-          style: const TextStyle(
-            fontSize: 14,
-            color: AppColors.black,
+        Expanded(
+          child: Text(
+            text,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 14,
+              color: AppColors.black,
+            ),
           ),
         )
       ],
