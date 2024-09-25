@@ -50,8 +50,8 @@ class _MovieSliderState extends State<MovieSlider> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 280,
-            height: 280,
+            width: MediaQuery.of(context).size.width - 80,
+            height: MediaQuery.of(context).size.height * 0.39,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
