@@ -10,6 +10,7 @@ class InputText extends StatelessWidget {
   final bool validator;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final bool enabled;
   const InputText({
     super.key,
     required this.label,
@@ -18,12 +19,14 @@ class InputText extends StatelessWidget {
     this.validator = true,
     this.keyboardType,
     this.inputFormatters,
+    this.enabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       style: const TextStyle(color: AppColors.white),
+      enabled: enabled,
       controller: controller,
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
@@ -41,6 +44,11 @@ class InputText extends StatelessWidget {
         labelText: label,
         labelStyle: const TextStyle(color: AppColors.white),
         border: const OutlineInputBorder(),
+        disabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.gray,
+          ),
+        ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.white,
