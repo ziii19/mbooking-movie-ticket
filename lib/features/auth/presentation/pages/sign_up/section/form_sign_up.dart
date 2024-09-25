@@ -114,6 +114,7 @@ class _FormSignUpState extends State<_FormSignUp> {
               controller: emailController,
               label: 'Email',
               hintText: 'adam@gmail.com',
+              keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 16),
             InputPassword(

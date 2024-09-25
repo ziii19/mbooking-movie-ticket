@@ -41,6 +41,7 @@ class _FormSignInState extends State<_FormSignIn> {
             controller: emailController,
             label: 'Email',
             hintText: 'adam@gmail.com',
+            keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 16),
           InputPassword(
