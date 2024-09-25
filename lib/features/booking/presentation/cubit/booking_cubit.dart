@@ -11,14 +11,18 @@ part 'booking_state.dart';
 class BookingCubit extends Cubit<BookingState> {
   BookingCubit() : super(BookingState.initial());
 
+  void updateReservedSeats(List<String> seats) {
+    emit(state.copyWith(reservedSeats: seats));
+  }
+
   void pickSeat(String seat) {
-    final seats = state.seats ?? []; // Menangani null
-    final updatedSeats = [...seats]; // Menangani null
+    final seats = state.seats ?? [];
+    final updatedSeats = [...seats];
 
     if (!updatedSeats.contains(seat)) {
-      updatedSeats.add(seat); // Tambahkan jika tidak ada
+      updatedSeats.add(seat);
     } else {
-      updatedSeats.remove(seat); // Hapus jika ada
+      updatedSeats.remove(seat);
     }
 
     emit(state.copyWith(seats: updatedSeats));
@@ -29,6 +33,7 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   void updateState({
+    int? movieId,
     String? movieTitle,
     String? movieImage,
     int? movieRuntime,
@@ -44,6 +49,7 @@ class BookingCubit extends Cubit<BookingState> {
   }) {
     emit(
       state.copyWith(
+        movieId: movieId ?? state.movieId,
         movieTitle: movieTitle ?? state.movieTitle,
         movieImage: movieImage ?? state.movieImage,
         movieRuntime: movieRuntime ?? state.movieRuntime,

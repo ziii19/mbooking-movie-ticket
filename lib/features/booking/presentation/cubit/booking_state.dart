@@ -2,11 +2,13 @@ part of 'booking_cubit.dart';
 
 class BookingState {
   const BookingState({
+    this.movieId,
     this.movieTitle,
     this.movieImage,
     this.movieRuntime,
     this.movieGenres,
     this.cinema,
+    this.reservedSeats = const [],
     this.seats = const [],
     this.wathcingDate,
     this.wathcingTime,
@@ -18,11 +20,13 @@ class BookingState {
     this.status = TransactionStatus.pending,
   });
 
+  final int? movieId;
   final String? movieTitle;
   final String? movieImage;
   final int? movieRuntime;
   final List<String>? movieGenres;
   final int? cinema;
+  final List<String>? reservedSeats;
   final List<String>? seats;
   final int? wathcingDate;
   final int? wathcingTime;
@@ -35,8 +39,8 @@ class BookingState {
 
   factory BookingState.initial() => const BookingState();
 
-  SeatStatus seatStatusChecker(String seat, List<String> reservedSeats) =>
-      reservedSeats.contains(seat)
+  SeatStatus seatStatusChecker(String seat) =>
+      reservedSeats!.contains(seat)
           ? SeatStatus.reserved
           : seats!.contains(seat)
               ? SeatStatus.selected
@@ -51,6 +55,7 @@ class BookingState {
       trxId: trxId!,
       uid: uid!,
       trxTime: trxTime ?? DateTime.now().millisecondsSinceEpoch,
+      movieId: movieId!,
       movieImage: movieImage!,
       movieTitle: movieTitle!,
       movieRuntime: movieRuntime!,
@@ -67,11 +72,13 @@ class BookingState {
   }
 
   BookingState copyWith({
+    int? movieId,
     String? movieTitle,
     String? movieImage,
     int? movieRuntime,
     List<String>? movieGenres,
     int? cinema,
+    List<String>? reservedSeats,
     List<String>? seats,
     int? wathcingDate,
     int? wathcingTime,
@@ -83,11 +90,13 @@ class BookingState {
     TransactionStatus? status,
   }) {
     return BookingState(
+      movieId: movieId ?? this.movieId,
       movieTitle: movieTitle ?? this.movieTitle,
       movieImage: movieImage ?? this.movieImage,
       movieRuntime: movieRuntime ?? this.movieRuntime,
       movieGenres: movieGenres ?? this.movieGenres,
       cinema: cinema ?? this.cinema,
+      reservedSeats: reservedSeats ?? this.reservedSeats,
       seats: seats ?? this.seats,
       wathcingDate: wathcingDate ?? this.wathcingDate,
       wathcingTime: wathcingTime ?? this.wathcingTime,
