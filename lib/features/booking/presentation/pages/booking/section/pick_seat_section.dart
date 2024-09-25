@@ -8,7 +8,6 @@ class _PickSeatSection extends StatefulWidget {
 }
 
 class _PickSeatSectionState extends State<_PickSeatSection> {
-  List<String> reservedSeats = ['A1', 'F6', 'H8', 'D5', 'A5', 'A6', 'J9'];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BookingCubit, BookingState>(
@@ -32,7 +31,7 @@ class _PickSeatSectionState extends State<_PickSeatSection> {
 
                   return GestureDetector(
                     onTap: () {
-                      if (reservedSeats.contains(seat)) {
+                      if (state.reservedSeats!.contains(seat)) {
                         showSnackBar(context, 'This seat is reserved');
                         return;
                       }
@@ -55,7 +54,7 @@ class _PickSeatSectionState extends State<_PickSeatSection> {
                       height: 24,
                       decoration: BoxDecoration(
                         color: Seat.seatColor(
-                          state.seatStatusChecker(seat, reservedSeats),
+                          state.seatStatusChecker(seat),
                         ),
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -64,7 +63,7 @@ class _PickSeatSectionState extends State<_PickSeatSection> {
                           seat,
                           style: TextStyle(
                             color: Seat.textColor(
-                              state.seatStatusChecker(seat, reservedSeats),
+                              state.seatStatusChecker(seat),
                             ),
                             fontWeight: FontWeight.bold,
                             fontSize: width > 400 ? 14 : 12,

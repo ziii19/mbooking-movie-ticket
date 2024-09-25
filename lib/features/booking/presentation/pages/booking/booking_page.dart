@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbooking/core/constants/movie_booking_properti.dart';
@@ -18,21 +21,57 @@ part 'section/legend_section.dart';
 part 'section/pick_seat_section.dart';
 
 class BookingPage extends StatefulWidget {
-  static route() => MaterialPageRoute(
-        builder: (context) => const BookingPage(),
+  static route(int movieId) => MaterialPageRoute(
+        builder: (context) => BookingPage(
+          movieId: movieId,
+        ),
       );
-  const BookingPage({super.key});
+  const BookingPage({super.key, required this.movieId});
+
+  final int movieId;
 
   @override
   State<BookingPage> createState() => _BookingPageState();
 }
 
 class _BookingPageState extends State<BookingPage> {
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  
+  Stream<List<String>> getSeatReservedRealtime(int movieId) {
+    return _firebaseFirestore
+        .collection('transactions')
+        .where('movieId', isEqualTo: movieId)
+        .where('status', isEqualTo: 'Success')
+        .snapshots()
+        .map((snapshot) {
+      List<String> reservedSeats = [];
+      for (var doc in snapshot.docs) {
+        List<dynamic> seats = doc.data()['seats']; 
+
+        reservedSeats.addAll(List<String>.from(
+            seats));
+      }
+      return reservedSeats;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
+          StreamBuilder(
+              stream: getSeatReservedRealtime(widget.movieId),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  context
+                      .read<BookingCubit>()
+                      .updateReservedSeats(snapshot.data!);
+                } else {
+                  context.read<BookingCubit>().updateReservedSeats([]);
+                }
+                return const SizedBox();
+              }),
           const SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +163,8 @@ class _BookingPageState extends State<BookingPage> {
                       return;
                     }
                     context.read<BookingCubit>().updateState(
-                        trxId: DateTime.now().millisecondsSinceEpoch.toString());
+                        trxId:
+                            DateTime.now().millisecondsSinceEpoch.toString());
 
                     Navigator.push(context, TransactionDetail.route());
                   },
