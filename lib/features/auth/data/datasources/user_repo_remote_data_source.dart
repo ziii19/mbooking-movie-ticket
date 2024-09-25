@@ -60,10 +60,20 @@ class UserRepoRemoteDataSourceImpl implements UserRepoRemoteDataSource {
   @override
   Future<UserModel> updateUser(UserModel user) async {
     try {
-      await firebaseFirestore
-          .collection('users')
-          .doc(user.uid)
-          .update(user.toMap());
+      if (user.photoUrl != null) {
+        await firebaseFirestore
+            .collection('users')
+            .doc(user.uid)
+            .update(user.toMap());
+      } else {
+        await firebaseFirestore.collection('users').doc(user.uid).update(
+          {
+            'name': user.name,
+            'email': user.email,
+            'phoneNumber': user.phoneNumber,
+          },
+        );
+      }
       return user;
     } on FirebaseException catch (e) {
       throw Exception(e);

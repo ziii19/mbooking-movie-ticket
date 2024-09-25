@@ -52,7 +52,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       );
       result.fold(
         (l) => emit(UserError(l.message)),
-        (r) => emit(UserSuccess(r)),
+        (r) => emit(UpdateUserSuccess(r)),
       );
     });
     on<GetUser>((event, emit) async {

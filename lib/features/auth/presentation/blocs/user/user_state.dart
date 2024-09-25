@@ -18,3 +18,9 @@ final class UserSuccess extends UserState {
 
   UserSuccess(this.user);
 }
+
+final class UpdateUserSuccess extends UserState {
+  final User user;
+
+  UpdateUserSuccess(this.user);
+}
