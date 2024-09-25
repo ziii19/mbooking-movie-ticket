@@ -12,6 +12,7 @@ import 'package:mbooking/features/main/pages/main_page.dart';
 import '../../../../auth/presentation/blocs/user/user_bloc.dart';
 import '../../widgets/build_profile_menu.dart';
 import '../../widgets/build_user_info.dart';
+import '../edit/edit_profile.dart';
 import '../feedback/feedback_page.dart';
 
 part 'section/user_profile.dart';
