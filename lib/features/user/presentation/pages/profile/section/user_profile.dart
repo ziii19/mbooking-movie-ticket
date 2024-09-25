@@ -61,7 +61,12 @@ class _UserProfile extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              EditProfile.route(),
+                            );
+                          },
                           icon: SvgPicture.asset(AssetsSvg.edit),
                         )
                       ],
