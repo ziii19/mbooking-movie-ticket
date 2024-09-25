@@ -4,6 +4,7 @@ class Transaction {
   final String trxId;
   final String uid;
   final int trxTime;
+  final int movieId;
   final String movieImage;
   final String movieTitle;
   final int movieRuntime;
@@ -17,6 +18,7 @@ class Transaction {
   final String status;
   final List<String> seats;
   Transaction({
+    required this.movieId,
     required this.trxId,
     required this.uid,
     required this.trxTime,
@@ -38,6 +40,7 @@ class Transaction {
         trxId: trxId,
         uid: uid,
         trxTime: trxTime,
+        movieId: movieId,
         movieImage: movieImage,
         movieTitle: movieTitle,
         movieRuntime: movieRuntime,

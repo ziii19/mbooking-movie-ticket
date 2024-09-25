@@ -153,13 +153,14 @@ class _MovieDetailBookingState extends State<MovieDetailBooking> {
             context.read<BookingCubit>().updateState(
                   cinema: cinemaSelected!,
                   price: listCinema[cinemaSelected!].price,
+                  movieId: _movieDetail!.id,
                   movieGenres: _movieDetail!.genres,
                   movieImage: _movieDetail!.posterPath,
                   movieRuntime: _movieDetail!.runtime,
                   movieTitle: _movieDetail!.title,
                   uid: user.user.uid,
                 );
-            Navigator.push(context, BookingPage.route());
+            Navigator.push(context, BookingPage.route(_movieDetail!.id));
           },
           child: const Text('Continue'),
         ),
